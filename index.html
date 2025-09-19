@@ -49,8 +49,6 @@ html, body {
   user-select:none;
 }
 .arcade-btn:hover { background:black; color:#9bbc0f; box-shadow:0 0 6px #9bbc0f; }
-.arcade-btn .arrow { display:inline-block; transform:translateY(-1px); margin-right:4px; }
-.arcade-btn .text { display:inline-block; transform:translateY(1px); }
 
 input, textarea, select {
   font-family:'Press Start 2P', cursive;
@@ -60,7 +58,7 @@ input, textarea, select {
   border:1px solid #9bbc0f;
   border-radius:4px;
   font-size:16px; /* Prevent iPhone zoom */
-  padding:4px;    /* keeps visual size compact */
+  padding:6px;    /* keeps visual size compact */
   text-transform:uppercase;
   position:relative;
   z-index:1;
@@ -119,9 +117,9 @@ input, textarea, select {
     <input type="text" name="name" placeholder="YOUR NAME" required>
     <label>Email</label>
     <input type="email" name="email" placeholder="YOUR EMAIL" required>
-    <label>Console Theme</label>
+    <label>Console Theme or Custom Build</label>
     <select name="console_theme" id="theme" required>
-      <option value="">Choose theme/custom</option>
+      <option value="">Select an option/option>
       <option value="green dragon" data-price="350">Green Dragon $350</option>
       <option value="bone head" data-price="350">Bone Head $350</option>
       <option value="90s alarm clock" data-price="350">90's Alarm Clock $350</option>
@@ -132,7 +130,7 @@ input, textarea, select {
       <option value="ghost" data-price="350">Ghost $350</option>
       <option value="grass toad" data-price="350">Grass Toad $350</option>
       <option value="water turtle" data-price="350">Water Turtle $350</option>
-      <option value="custom" data-price="390">Custom $390+</option>
+      <option value="custom" data-price="390">Custom Build $390+</option>
     </select>
 
     <div id="custom-fields" style="display:none; flex-direction: column; gap:6px;">
@@ -181,7 +179,6 @@ input, textarea, select {
   </div>
 </div>
 
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
 <script>
 const themeSelect = document.getElementById('theme');
@@ -245,6 +242,9 @@ window.onload = function() {
 
   closeBtn.addEventListener('click', ()=>{
     overlay.classList.remove("show");
+    // Attempt to close window
+    window.close();
+    // Fallback reset if window.close() fails
     form.style.display="flex";
     form.reset();
     customFields.style.display='none';
